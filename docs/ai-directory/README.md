@@ -103,7 +103,14 @@ The owner still needs to supply and verify:
   evidence.
 - An accessible product walkthrough recording.
 - A successful domain-verification challenge and current portal MCP tool scan.
-- Current privacy policy, support contact, screenshots and release notes.
+- Privacy-policy review with specific collection, use, and retention details
+  for hosted records and third-party MCP clients. The current public privacy
+  page lists stored record categories but says retention depends on deployment
+  and record type; app governance explicitly labels retention classification
+  as informational, with no automatic deletion. Do not imply that this field
+  deletes or expires data. External clients may retain retrieved context beyond
+  ReasonTrail's control.
+- Support contact, screenshots and release notes.
 
 Do not include credentials or reviewer secrets in the plugin ZIP or repository.
 

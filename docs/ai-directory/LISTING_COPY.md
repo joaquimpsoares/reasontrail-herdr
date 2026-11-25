@@ -94,6 +94,9 @@ Do not submit either listing until its current portal requirements are met:
   `termsOfServiceURL`.
 - Review the privacy policy for explicit collection, use, and retention details
   that accurately cover hosted ReasonTrail and third-party AI-client access.
+  The current policy does not state category-specific retention periods, and
+  app retention classification is informational rather than automatic deletion.
+  Retrieved content may also be retained by the connecting AI client.
 - Record a product walkthrough and provide its accessible URL for OpenAI.
 
 The current hosted app's response and local tests do not substitute for these
