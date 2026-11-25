@@ -203,7 +203,7 @@ the low-impact call procedure in the Microsoft documentation.
 | --- | --- | --- | --- | --- |
 | Claude Software Directory | No policy-cleared endpoint yet; current shared endpoint includes capture | OAuth 2.0, PKCE, discovery implemented locally | No; hosted OAuth routes were 404 on 25 Nov 2026 | Blocked on Anthropic policy fit and live validation |
 | ChatGPT / Codex Plugins Directory | Portable Agent Plugin | OAuth discovery/DCR; portal handshake still needs confirmation | No | Not submitted |
-| Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | No | Root manifest in draft branch; merge, topic, test and gallery indexing pending |
+| Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | No | Root manifest in draft branch; `gemini-cli-extension` topic is set; merge, live test and gallery indexing pending |
 | Cursor Marketplace | Root Agent Plugin | Cursor supports MCP with OAuth | No | Root package in draft branch; merge, local test and review pending |
 | VS Code / Copilot | Direct remote MCP setup | OAuth supported in Copilot configuration | No | Marketplace is experimental; no publisher path confirmed |
 

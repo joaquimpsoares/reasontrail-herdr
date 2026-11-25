@@ -12,7 +12,7 @@ submission-specific package is under `integrations/ai-directories/`.
 | Claude Software Directory | Hosted MCP endpoint `https://app.reasontrail.ai/api/mcp` | OAuth implementation is in the ReasonTrail application checkout; its deployed routes must be live before testing or directory submission. |
 | ChatGPT and Codex | `integrations/ai-directories/openai-reasontrail/` | OpenAI DCR package draft; deployment, portal verification, review account, terms, and demo remain outstanding. |
 | Cursor | Repository root (`plugin.json`, `mcp.json`) | Portable Agent Plugin draft; client installation and Cursor review remain outstanding. |
-| Gemini CLI | Repository root (`gemini-extension.json`) | Extension draft; topic `gemini-cli-extension` and live OAuth test remain outstanding. |
+| Gemini CLI | Repository root (`gemini-extension.json`) | Extension draft; required topic is set on the public repository; live OAuth test, merge, and gallery indexing remain outstanding. |
 
 The MCP service uses the connected user's ReasonTrail permissions. Model
 selection and model billing remain with the client provider. These files are
