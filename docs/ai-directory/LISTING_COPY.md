@@ -6,27 +6,36 @@ live compatibility, publisher ownership verification, or test completion.
 
 ## Claude
 
+**Status: blocked draft. Do not submit this copy yet.** The current shared MCP
+endpoint includes conversation-capture tools. Anthropic's current Software
+Directory Policy section 1.G restricts persistent storage or cross-session use
+of Claude conversation content. See the policy-fit gate in
+[`README.md`](./README.md). The endpoint, tools, listing language, and intended
+cross-session behavior need a Claude-specific design and policy review before
+this can become submission copy.
+
 **Name:** ReasonTrail
 
 **One-line description:** Project context, decisions, and open work with source
 references.
 
-**Description:** ReasonTrail gives Claude scoped access to project knowledge,
-reviewed decisions, conversations, tasks, and repository context from your
-ReasonTrail account. Results follow your organization and project permissions
-and include source references where available. You can also capture eligible
-conversation turns and propose updates through ReasonTrail's review process.
-Claude uses your Claude account for model access; ReasonTrail does not choose or
-pay for the model.
+**Proposed description (not approved for submission):** ReasonTrail gives
+Claude scoped access to reviewed project decisions, tasks, and repository
+context from your ReasonTrail account. Results follow your organization and
+project permissions and include source references where available. This copy
+intentionally does not advertise Claude conversation capture. Claude uses your
+Claude account for model access; ReasonTrail does not choose or pay for the
+model. Confirm that even this retrieval-only product behavior fits Anthropic's
+current policy before use.
 
 **Three example prompts**
 
 1. Find the latest context for my project and show the sources.
 2. What work is still open in this project?
-3. What did we decide about this topic? Separate approved decisions from
-   proposals awaiting review.
+3. What did we decide about this topic? Show the approved decision and its
+   source references.
 
-**Connection:** `https://app.reasontrail.ai/api/mcp` using OAuth 2.0
+**Proposed connection (not policy-cleared):** `https://app.reasontrail.ai/api/mcp` using OAuth 2.0
 Authorization Code with PKCE S256 over Streamable HTTP.
 
 **Privacy:** `https://reasontrail.ai/privacy`

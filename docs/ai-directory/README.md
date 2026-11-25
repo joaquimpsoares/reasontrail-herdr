@@ -32,14 +32,38 @@ MCP request still rechecks the user's active membership and token permissions.
 
 ## Claude directory
 
-Anthropic's current directory portal accepts a single remote MCP connector.
-Create the submission from the account authorized to publish for ReasonTrail,
-use the hosted endpoint above, finish OAuth/domain verification, scan all tools,
-resolve automated findings, provide the privacy-policy URL and support details,
-then submit for review. Anthropic also requires a standard testing account with
-sample data, at least three working prompts/use cases, verified contact and
-support details, and agreement to its Software Directory Terms. Publishing is
-a separate step after approval.
+**Policy fit is unresolved; do not submit the current shared MCP surface.**
+ReasonTrail's general OAuth listing requests `brain:capture`, whose tools can
+store submitted conversation turns and make reviewed project knowledge
+available to later sessions. Anthropic's current [Software Directory
+Policy](https://support.claude.com/en/articles/13145358-anthropic-software-directory-policy)
+section 1.G prohibits persistently storing or using conversation content to
+build user profiles or change Claude's behavior across sessions. OAuth
+compatibility by itself does not establish directory-policy compatibility.
+
+The current listing draft advertises conversation capture, so it is not ready
+for Anthropic review. A Claude-specific surface would need a verified policy
+design that does not persist or reuse Claude conversation content; the effect
+of returning existing ReasonTrail knowledge to Claude also needs careful review
+against that policy. Do not claim compliance or submit until that product scope
+is resolved and the resulting implementation is tested. If the cross-session
+memory workflow cannot be separated from Claude, do not seek Anthropic
+directory inclusion without written guidance from Anthropic.
+
+If a policy-cleared scope is approved, Anthropic's current directory portal
+accepts a single remote MCP connector. The authorized publisher must create the
+submission, complete OAuth/domain verification, scan all tools, resolve
+automated findings, provide the privacy-policy URL and support details, then
+submit for review. Anthropic also requires a standard testing account with
+sample data, at least three working prompts/use cases, and verified contact
+and support details.
+
+Anthropic's [Software Directory Terms](https://support.claude.com/en/articles/13145338-anthropic-software-directory-terms)
+include publisher representations about rights, law and policy compliance,
+privacy disclosures, and an indemnity. Only the authorized ReasonTrail
+publisher should review and accept those terms; the code or draft listing does
+not constitute acceptance. Approval and publication are separate steps after
+submission.
 
 Directory policy requires secure OAuth 2.0 for authenticated remote MCP servers
 and applicable tool annotations. The server implements OAuth discovery and
@@ -170,7 +194,7 @@ the low-impact call procedure in the Microsoft documentation.
 
 | Client / channel | Package or setup | OAuth compatibility | Live verified | Official listing |
 | --- | --- | --- | --- | --- |
-| Claude Software Directory | Hosted MCP connector | OAuth 2.0, PKCE, discovery | No; hosted OAuth routes were 404 on 25 Nov 2026 | Not submitted |
+| Claude Software Directory | No policy-cleared endpoint yet; current shared endpoint includes capture | OAuth 2.0, PKCE, discovery implemented locally | No; hosted OAuth routes were 404 on 25 Nov 2026 | Blocked on Anthropic policy fit and live validation |
 | ChatGPT / Codex Plugins Directory | Portable Agent Plugin | OAuth discovery/DCR; portal handshake still needs confirmation | No | Not submitted |
 | Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | No | Root manifest in draft branch; merge, topic, test and gallery indexing pending |
 | Cursor Marketplace | Root Agent Plugin | Cursor supports MCP with OAuth | No | Root package in draft branch; merge, local test and review pending |
