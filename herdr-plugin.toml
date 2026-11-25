@@ -1,0 +1,23 @@
+id = "ai.reasontrail.project-memory"
+name = "ReasonTrail Project Memory"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Fetch governed project context and submit an explicit handover to ReasonTrail."
+platforms = ["linux", "macos", "windows"]
+
+[[build]]
+command = ["npm", "ci", "--ignore-scripts"]
+
+[[actions]]
+id = "context"
+title = "Fetch ReasonTrail project context"
+contexts = ["workspace"]
+command = ["node", "src/plugin.mjs", "context"]
+
+[[panes]]
+id = "handover"
+title = "Submit a ReasonTrail handover"
+placement = "popup"
+width = "80%"
+height = 18
+command = ["node", "src/plugin.mjs", "handover"]

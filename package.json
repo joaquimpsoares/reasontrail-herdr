@@ -1,0 +1,16 @@
+{
+  "name": "@reasontrail/herdr-plugin",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Herdr TUI plugin for governed ReasonTrail project context and handovers",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
+  "dependencies": {
+    "@reasontrail/cli": "0.1.4"
+  }
+}
