@@ -1,0 +1,9 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/mcp.schema.json",
+  "mcpServers": {
+    "reasontrail": {
+      "type": "streamable-http",
+      "url": "https://app.reasontrail.ai/api/mcp"
+    }
+  }
+}

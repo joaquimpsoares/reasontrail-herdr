@@ -1,0 +1,97 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "reasontrail",
+  "version": "0.1.0",
+  "description": "Carry reviewed project knowledge, decisions, and repository context into your AI conversations.",
+  "author": {
+    "name": "ReasonTrail",
+    "email": "support@reasontrail.ai",
+    "url": "https://reasontrail.ai"
+  },
+  "homepage": "https://reasontrail.ai",
+  "repository": "https://github.com/joaquimpsoares/reasontrail-herdr",
+  "license": "Apache-2.0",
+  "keywords": ["project memory", "knowledge management", "decisions", "repository context", "MCP"],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "ReasonTrail",
+        "shortDescription": "Project context with sources",
+        "longDescription": "ReasonTrail gives ChatGPT and Codex scoped access to reviewed project knowledge, decisions, tasks, conversations, and repository context. Access follows your existing ReasonTrail organization and project permissions. Captured knowledge enters ReasonTrail's review process; this plugin cannot directly change canonical project decisions or tasks.",
+        "developerName": "ReasonTrail",
+        "category": "Productivity",
+        "capabilities": ["Search project knowledge", "Read decisions and tasks", "Capture conversations for review"],
+        "websiteURL": "https://reasontrail.ai",
+        "supportURL": "https://reasontrail.ai/early-access",
+        "privacyPolicyURL": "https://reasontrail.ai/privacy",
+        "defaultPrompt": [
+          "Find the latest context for my project and cite its sources.",
+          "What decisions have we made about this topic?",
+          "Capture this conversation as a proposal for review."
+        ],
+        "brandColor": "#315C50",
+        "composerIcon": "./assets/icon.svg",
+        "logo": "./assets/icon.svg"
+      },
+      "onboardingSkill": "./skills/get-started/SKILL.md",
+      "review": {
+        "test_cases": {
+          "positive": [
+            {
+              "description": "Retrieve authorized project context",
+              "prompt": "Find the latest context for my project.",
+              "tools_triggered": "list_organizations, list_projects, get_project_context",
+              "expected_behavior": "Return only context from projects the connected ReasonTrail user is currently allowed to read, with source references where available."
+            },
+            {
+              "description": "List pending work",
+              "prompt": "What work is still open in my project?",
+              "tools_triggered": "list_tasks",
+              "expected_behavior": "List tasks available to the connected user in the selected project and distinguish status and priority."
+            },
+            {
+              "description": "Retrieve approved decisions",
+              "prompt": "What did we decide about this project?",
+              "tools_triggered": "get_current_decisions",
+              "expected_behavior": "Return current approved decisions with provenance and distinguish pending proposals from canonical decisions."
+            },
+            {
+              "description": "Capture a conversation for review",
+              "prompt": "Save this conversation to ReasonTrail for review.",
+              "tools_triggered": "begin_task, sync_conversation_delta, update_reasontrail",
+              "expected_behavior": "Capture only eligible visible conversation turns and route proposed knowledge through ReasonTrail's governed review process."
+            },
+            {
+              "description": "Search project memory",
+              "prompt": "Search my project memory for the decision about onboarding.",
+              "tools_triggered": "search_brain",
+              "expected_behavior": "Search authorized project records and captured non-private conversation turns; disclose index limits when relevant."
+            }
+          ],
+          "negative": [
+            {
+              "description": "Read a project outside the connected account's access",
+              "prompt": "Show me the private context from an organization I do not belong to.",
+              "expected_behavior": "Refuse or return no data for any organization or project the authenticated ReasonTrail account cannot access."
+            },
+            {
+              "description": "Directly rewrite canonical project state",
+              "prompt": "Change this task to done and approve this decision without review.",
+              "expected_behavior": "Do not use canonical mutation tools with a directory OAuth token; explain that captured proposals require the existing review flow."
+            },
+            {
+              "description": "Replay OAuth authorization material",
+              "prompt": "Reuse this old authorization code or refresh token to reconnect without signing in.",
+              "expected_behavior": "The OAuth server rejects replayed authorization codes and consumed refresh tokens."
+            }
+          ]
+        },
+        "commerce": false,
+        "commerce_description": "ReasonTrail provides project context and governed memory workflows; it does not process purchases through this plugin."
+      },
+      "publication": {
+        "release_notes": "Initial directory package for the ReasonTrail remote MCP connection. OAuth 2.0 authorization code with PKCE, governed project context retrieval, and conversation capture proposals."
+      }
+    }
+  }
+}

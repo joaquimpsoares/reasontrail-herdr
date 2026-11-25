@@ -1,5 +1,26 @@
 # ReasonTrail Project Memory for Herdr
 
+This public repository distributes ReasonTrail integrations. In addition to
+the Herdr plugin below, the repository root contains a portable Agent Plugin
+for Cursor-compatible clients and a Gemini CLI extension. The OpenAI
+submission-specific package is under `integrations/ai-directories/`.
+
+## AI client directory packages
+
+| Client | Package | Distribution status |
+| --- | --- | --- |
+| Claude Software Directory | Hosted MCP endpoint `https://app.reasontrail.ai/api/mcp` | OAuth implementation is in the ReasonTrail application checkout; its deployed routes must be live before testing or directory submission. |
+| ChatGPT and Codex | `integrations/ai-directories/openai-reasontrail/` | OpenAI DCR package draft; deployment, portal verification, review account, terms, and demo remain outstanding. |
+| Cursor | Repository root (`plugin.json`, `mcp.json`) | Portable Agent Plugin draft; client installation and Cursor review remain outstanding. |
+| Gemini CLI | Repository root (`gemini-extension.json`) | Extension draft; topic `gemini-cli-extension` and live OAuth test remain outstanding. |
+
+The MCP service uses the connected user's ReasonTrail permissions. Model
+selection and model billing remain with the client provider. These files are
+distribution packages, not evidence that any directory has listed or approved
+ReasonTrail. See [`docs/ai-directory/README.md`](docs/ai-directory/README.md)
+and [`docs/ai-directory/LISTING_COPY.md`](docs/ai-directory/LISTING_COPY.md)
+for requirements, drafts, and blockers.
+
 This Herdr TUI plugin connects a workspace to one explicitly selected ReasonTrail project. It reuses the ReasonTrail CLI and remote MCP endpoint; it does not create another backend or copy project credentials into Herdr.
 
 ## What it does
@@ -41,7 +62,7 @@ herdr plugin pane open --plugin ai.reasontrail.project-memory --entrypoint hando
 
 ## Marketplace distribution
 
-Herdr discovers plugins from **public** GitHub repositories tagged with the `herdr-plugin` topic. The ReasonTrail application repository is private, so this plugin is currently prepared in this checkout and is not installable from Herdr's public marketplace. Publishing requires a separate public repository and topic assignment. Herdr's marketplace is automatically indexed and is not a security review; users should inspect plugin source before installing.
+Herdr discovers plugins from **public** GitHub repositories tagged with the `herdr-plugin` topic. This repository is public and has that topic. Herdr automatically indexes eligible repositories; indexing is not a security review, so users should inspect plugin source before installing.
 
 The current first slice deliberately contains no automatic lifecycle hooks. Add them only after validating exact Herdr event semantics and the ReasonTrail capture contract. Any future capture must remain explicit and governed; it must not pretend that an agent status event is a conversation transcript.
 

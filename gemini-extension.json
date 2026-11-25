@@ -1,0 +1,12 @@
+{
+  "name": "reasontrail-herdr",
+  "version": "0.1.0",
+  "description": "Project context, reviewed decisions, and open work from ReasonTrail.",
+  "mcpServers": {
+    "reasontrail": {
+      "httpUrl": "https://app.reasontrail.ai/api/mcp",
+      "timeout": 30000
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}
