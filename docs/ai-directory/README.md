@@ -90,6 +90,14 @@ rely on standard OAuth discovery for Cursor. ChatGPT's listing portal must
 still verify the DCR flow and refresh-token renewal against the deployed
 service.
 
+The current [OpenAI submission guide](https://developers.openai.com/plugins/deploy/submission)
+requires all four public MCP listing URLs, including a real
+`termsOfServiceURL`; it also requires five positive and three negative cases,
+an accessible video walkthrough, and release notes. Reviewer credentials are
+entered privately in the portal, not the ZIP. Approval does not publish the
+plugin automatically: the authorized publisher must choose **Publish plugin**
+after approval.
+
 The owner still needs to supply and verify:
 
 - Developer identity and publisher verification in OpenAI's portal.
