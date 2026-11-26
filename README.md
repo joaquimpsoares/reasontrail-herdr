@@ -41,7 +41,7 @@ herdr plugin pane open --plugin ai.reasontrail.project-memory --entrypoint hando
 
 ## Marketplace distribution
 
-Herdr discovers plugins from **public** GitHub repositories tagged with the `herdr-plugin` topic. The ReasonTrail application repository is private, so this plugin is currently prepared in this checkout and is not installable from Herdr's public marketplace. Publishing requires a separate public repository and topic assignment. Herdr's marketplace is automatically indexed and is not a security review; users should inspect plugin source before installing.
+Herdr discovers plugins from **public** GitHub repositories tagged with the `herdr-plugin` topic. This repository is public and already appears in Herdr's marketplace index. Indexing is automatic and is not a security review, so users should inspect the plugin source before installing.
 
 The current first slice deliberately contains no automatic lifecycle hooks. Add them only after validating exact Herdr event semantics and the ReasonTrail capture contract. Any future capture must remain explicit and governed; it must not pretend that an agent status event is a conversation transcript.
 
