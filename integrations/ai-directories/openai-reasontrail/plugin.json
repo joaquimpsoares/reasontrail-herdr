@@ -17,17 +17,17 @@
       "interface": {
         "displayName": "ReasonTrail",
         "shortDescription": "Project context with sources",
-        "longDescription": "ReasonTrail gives ChatGPT and Codex scoped access to reviewed project knowledge, decisions, tasks, conversations, and repository context. Access follows your existing ReasonTrail organization and project permissions. Captured knowledge enters ReasonTrail's review process; this plugin cannot directly change canonical project decisions or tasks.",
+        "longDescription": "ReasonTrail gives ChatGPT and Codex scoped access to reviewed project knowledge, decisions, tasks, and repository context. You can also save text you explicitly select as a proposal for owner review. Access follows your existing ReasonTrail organization and project permissions. Proposals do not directly change canonical project decisions or tasks. ReasonTrail does not choose or pay for your AI model.",
         "developerName": "ReasonTrail",
         "category": "Productivity",
-        "capabilities": ["Search project knowledge", "Read decisions and tasks", "Capture conversations for review"],
+        "capabilities": ["Search project knowledge", "Read decisions and tasks", "Save selected notes for review"],
         "websiteURL": "https://reasontrail.ai",
         "supportURL": "https://reasontrail.ai/early-access",
         "privacyPolicyURL": "https://reasontrail.ai/privacy",
         "defaultPrompt": [
           "Find the latest context for my project and cite its sources.",
           "What decisions have we made about this topic?",
-          "Capture this conversation as a proposal for review."
+          "Save this selected note to ReasonTrail for owner review."
         ],
         "brandColor": "#315C50",
         "composerIcon": "./assets/icon.svg",
@@ -56,16 +56,16 @@
               "expected_behavior": "Return current approved decisions with provenance and distinguish pending proposals from canonical decisions."
             },
             {
-              "description": "Capture a conversation for review",
-              "prompt": "Save this conversation to ReasonTrail for review.",
-              "tools_triggered": "begin_task, sync_conversation_delta, update_reasontrail",
-              "expected_behavior": "Capture only eligible visible conversation turns and route proposed knowledge through ReasonTrail's governed review process."
+              "description": "Save user-selected text for review",
+              "prompt": "Save this note to ReasonTrail for review: The team selected EU hosting for the pilot.",
+              "tools_triggered": "capture_note",
+              "expected_behavior": "Save only the note explicitly supplied in the request as a reviewable proposal in the selected authorized project; do not claim to capture the full ChatGPT conversation or change canonical project state."
             },
             {
               "description": "Search project memory",
               "prompt": "Search my project memory for the decision about onboarding.",
               "tools_triggered": "search_brain",
-              "expected_behavior": "Search authorized project records and captured non-private conversation turns; disclose index limits when relevant."
+              "expected_behavior": "Search authorized project records, Resources, and available non-private conversation turns; disclose source-index limits when relevant."
             }
           ],
           "negative": [
@@ -90,7 +90,7 @@
         "commerce_description": "ReasonTrail provides project context and governed memory workflows; it does not process purchases through this plugin."
       },
       "publication": {
-        "release_notes": "Initial directory package for the ReasonTrail remote MCP connection. OAuth 2.0 authorization code with PKCE, governed project context retrieval, and conversation capture proposals."
+        "release_notes": "Initial directory package for the ReasonTrail remote MCP connection. OAuth 2.0 authorization code with PKCE, governed project context retrieval, and explicitly selected notes submitted as reviewable proposals."
       }
     }
   }

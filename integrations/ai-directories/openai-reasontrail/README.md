@@ -12,7 +12,10 @@ can work.
 
 This package does not grant broader permissions than the signed-in ReasonTrail
 account. Directory OAuth is limited to project read and governed capture
-scopes; canonical project writes and runtime operations are unavailable.
+scopes; canonical project writes and runtime operations are unavailable. The
+capture flow saves text explicitly supplied by the user as a reviewable
+proposal. It does not claim access to ChatGPT's native transcript or hidden
+turns.
 
 ## Files
 
@@ -27,10 +30,10 @@ Validate `plugin.json` against the Agent Plugins 1.0.0 schema. OpenAI's
 documented `extensions.com.openai.auth` fields intentionally extend the closed
 portable `mcp.json` schema; validate this file with OpenAI's submission portal
 and the current OpenAI MCP authentication guidance. Cursor uses the separate
-schema-valid package. Then complete the OAuth flow,
-verify tool discovery, call one read tool, and verify that refresh-token
-rotation works. A schema-valid package is not evidence of a live connection or
-directory approval.
+schema-valid package. Then complete the OAuth flow, verify tool discovery,
+call one read tool, save an explicitly selected note for review, and verify
+that refresh-token rotation works. A schema-valid package is not evidence of a
+live connection or directory approval.
 
 ## Directory status
 

@@ -52,10 +52,11 @@ must be provisioned. No reviewer credentials are included here.
 **Short description:** Project context with sources.
 
 **Long description:** ReasonTrail gives ChatGPT and Codex scoped access to
-reviewed project knowledge, decisions, tasks, conversations, and repository
-context. Access follows your existing ReasonTrail organization and project
-permissions. Captured knowledge enters ReasonTrail's review process; the
-integration does not directly change canonical project decisions or tasks.
+reviewed project knowledge, decisions, tasks, and repository context. You can
+also save text you explicitly select as a proposal for owner review. Access
+follows your existing ReasonTrail organization and project permissions.
+Proposals do not directly change canonical project decisions or tasks. This
+connection does not claim access to ChatGPT's native conversation transcript.
 OpenAI clients use your existing OpenAI account for model access; ReasonTrail
 does not choose or pay for the model.
 
@@ -63,7 +64,7 @@ does not choose or pay for the model.
 
 - Find the latest context for my project and cite its sources.
 - What decisions have we made about this topic?
-- Capture this conversation as a proposal for review.
+- Save this selected note to ReasonTrail for owner review.
 
 **Listing links**
 
