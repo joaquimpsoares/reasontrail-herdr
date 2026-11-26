@@ -7,9 +7,9 @@
       "type": "http",
       "url": "https://app.reasontrail.ai/api/mcp",
       "timeout": 30000,
+      "authProviderType": "dynamic_discovery",
       "oauth": {
         "enabled": true,
-        "authProviderType": "dynamic_discovery",
         "scopes": ["brain:read", "brain:capture", "offline_access"]
       }
     }
