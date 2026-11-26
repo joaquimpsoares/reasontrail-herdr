@@ -17,17 +17,17 @@
       "interface": {
         "displayName": "ReasonTrail",
         "shortDescription": "Project context with sources",
-        "longDescription": "ReasonTrail gives ChatGPT and Codex scoped access to reviewed project knowledge, decisions, tasks, conversations, and repository context. Access follows your existing ReasonTrail organization and project permissions. Captured knowledge enters ReasonTrail's review process; this plugin cannot directly change canonical project decisions or tasks.",
+        "longDescription": "ReasonTrail gives ChatGPT and Codex scoped access to reviewed project knowledge, decisions, tasks, and repository context. Access follows your existing ReasonTrail organization and project permissions. Users can explicitly submit selected text as a proposal for review; this plugin cannot directly change canonical project decisions or tasks.",
         "developerName": "ReasonTrail",
         "category": "Productivity",
-        "capabilities": ["Search project knowledge", "Read decisions and tasks", "Capture conversations for review"],
+        "capabilities": ["Search project knowledge", "Read decisions and tasks", "Save selected notes for review"],
         "websiteURL": "https://reasontrail.ai",
         "supportURL": "https://reasontrail.ai/early-access",
         "privacyPolicyURL": "https://reasontrail.ai/privacy",
         "defaultPrompt": [
           "Find the latest context for my project and cite its sources.",
           "What decisions have we made about this topic?",
-          "Capture this conversation as a proposal for review."
+          "Save this selected note as a proposal for review."
         ],
         "brandColor": "#315C50",
         "composerIcon": "./assets/icon.svg",
@@ -56,10 +56,10 @@
               "expected_behavior": "Return current approved decisions with provenance and distinguish pending proposals from canonical decisions."
             },
             {
-              "description": "Capture a conversation for review",
-              "prompt": "Save this conversation to ReasonTrail for review.",
-              "tools_triggered": "begin_task, sync_conversation_delta, update_reasontrail",
-              "expected_behavior": "Capture only eligible visible conversation turns and route proposed knowledge through ReasonTrail's governed review process."
+              "description": "Save selected text for review",
+              "prompt": "Save this selected note to ReasonTrail for review.",
+              "tools_triggered": "capture_note",
+              "expected_behavior": "Save only the text explicitly selected and submitted by the user; route it through ReasonTrail's governed review process. Do not claim access to native conversation history or hidden turns."
             },
             {
               "description": "Search project memory",
@@ -90,7 +90,7 @@
         "commerce_description": "ReasonTrail provides project context and governed memory workflows; it does not process purchases through this plugin."
       },
       "publication": {
-        "release_notes": "Initial directory package for the ReasonTrail remote MCP connection. OAuth 2.0 authorization code with PKCE, governed project context retrieval, and conversation capture proposals."
+        "release_notes": "Initial directory package for the ReasonTrail remote MCP connection. OAuth 2.0 authorization code with PKCE, governed project context retrieval, and explicit selected-note proposals."
       }
     }
   }

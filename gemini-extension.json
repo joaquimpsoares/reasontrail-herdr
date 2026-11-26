@@ -6,7 +6,12 @@
     "reasontrail": {
       "type": "http",
       "url": "https://app.reasontrail.ai/api/mcp",
-      "timeout": 30000
+      "timeout": 30000,
+      "oauth": {
+        "enabled": true,
+        "authProviderType": "dynamic_discovery",
+        "scopes": ["brain:read", "brain:capture", "offline_access"]
+      }
     }
   },
   "contextFileName": "GEMINI.md"
