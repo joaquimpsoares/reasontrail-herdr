@@ -1,5 +1,26 @@
 # ReasonTrail Project Memory for Herdr
 
+This public repository distributes ReasonTrail integrations. In addition to
+the Herdr plugin below, the repository root contains a portable Agent Plugin
+for Cursor-compatible clients and a Gemini CLI extension. The OpenAI
+submission-specific package is under `integrations/ai-directories/`.
+
+## AI client directory packages
+
+| Client | Package | Distribution status |
+| --- | --- | --- |
+| Claude Software Directory | Hosted MCP endpoint `https://app.reasontrail.ai/api/mcp` | Claude Code 2.1.223 completed DCR and reached the production PKCE authorization URL with `brain:read` and `offline_access`; owner consent and authenticated tool calls remain pending. Directory submission is held on Anthropic policy fit. |
+| ChatGPT and Codex | `integrations/ai-directories/openai-reasontrail/` | OpenAI DCR package draft; production discovery and DCR are live. Authenticated client checks and portal verification, reviewer account, terms, and demo remain outstanding. |
+| Cursor | Repository root (`plugin.json`, `mcp.json`) | Portable Agent Plugin draft; client installation and Cursor review remain outstanding. |
+| Gemini CLI | Repository root (`gemini-extension.json`) | Gemini CLI 0.71.1 `extensions validate` passes; earlier package installation and MCP listing passed without authentication. Live DCR, OAuth, and authenticated tool calls remain unverified; [upstream issue #29620](https://github.com/google-gemini/gemini-cli/issues/29620) reports DCR persistence and issuer-check problems. The root manifest is not on the default branch, so gallery discovery remains pending. |
+
+The MCP service uses the connected user's ReasonTrail permissions. Model
+selection and model billing remain with the client provider. These files are
+distribution packages, not evidence that any directory has listed or approved
+ReasonTrail. See [`docs/ai-directory/README.md`](docs/ai-directory/README.md)
+and [`docs/ai-directory/LISTING_COPY.md`](docs/ai-directory/LISTING_COPY.md)
+for requirements, drafts, and blockers.
+
 This Herdr TUI plugin connects a workspace to one explicitly selected ReasonTrail project. It reuses the ReasonTrail CLI and remote MCP endpoint; it does not create another backend or copy project credentials into Herdr.
 
 ## What it does
@@ -41,7 +62,10 @@ herdr plugin pane open --plugin ai.reasontrail.project-memory --entrypoint hando
 
 ## Marketplace distribution
 
-Herdr discovers plugins from **public** GitHub repositories tagged with the `herdr-plugin` topic. This repository is public and already appears in Herdr's marketplace index. Indexing is automatic and is not a security review, so users should inspect the plugin source before installing.
+Herdr discovers plugins from **public** GitHub repositories tagged with the `herdr-plugin` topic. This repository is public and already appears in Herdr's marketplace index. Indexing is automatic and may lag default-branch updates; it is not a security review, so users should inspect plugin source before installing.
+
+The live index refreshed on 26 November 2026 at 03:00 UTC and now reports
+ReasonTrail Project Memory 0.1.1 at default-branch commit `a11d5eccbaf0ca247d068dc36f0325f46a8a8e5d`. This verifies the existing Herdr listing update is published in discovery.
 
 The current first slice deliberately contains no automatic lifecycle hooks. Add them only after validating exact Herdr event semantics and the ReasonTrail capture contract. Any future capture must remain explicit and governed; it must not pretend that an agent status event is a conversation transcript.
 

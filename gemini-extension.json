@@ -1,0 +1,18 @@
+{
+  "name": "reasontrail-herdr",
+  "version": "0.1.0",
+  "description": "Project context, reviewed decisions, and open work from ReasonTrail.",
+  "mcpServers": {
+    "reasontrail": {
+      "type": "http",
+      "url": "https://app.reasontrail.ai/api/mcp",
+      "timeout": 30000,
+      "authProviderType": "dynamic_discovery",
+      "oauth": {
+        "enabled": true,
+        "scopes": ["brain:read", "brain:capture", "offline_access"]
+      }
+    }
+  },
+  "contextFileName": "GEMINI.md"
+}

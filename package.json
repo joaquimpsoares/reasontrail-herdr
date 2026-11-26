@@ -8,7 +8,9 @@
     "node": ">=20"
   },
   "scripts": {
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "validate:ai-packages": "node scripts/validate-ai-packages.mjs",
+    "validate": "npm run validate:ai-packages && npm test"
   },
   "dependencies": {
     "@reasontrail/cli": "0.1.4"
