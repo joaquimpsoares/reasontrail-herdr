@@ -9,7 +9,7 @@ submission-specific package is under `integrations/ai-directories/`.
 
 | Client | Package | Distribution status |
 | --- | --- | --- |
-| Claude Software Directory | Hosted MCP endpoint `https://app.reasontrail.ai/api/mcp` | Production discovery and DCR are live; consent, token lifecycle, and authenticated tool calls remain unverified. Directory submission is held on Anthropic policy fit. |
+| Claude Software Directory | Hosted MCP endpoint `https://app.reasontrail.ai/api/mcp` | Claude Code 2.1.223 completed DCR and reached the production PKCE authorization URL with `brain:read` and `offline_access`; owner consent and authenticated tool calls remain pending. Directory submission is held on Anthropic policy fit. |
 | ChatGPT and Codex | `integrations/ai-directories/openai-reasontrail/` | OpenAI DCR package draft; production discovery and DCR are live. Authenticated client checks and portal verification, reviewer account, terms, and demo remain outstanding. |
 | Cursor | Repository root (`plugin.json`, `mcp.json`) | Portable Agent Plugin draft; client installation and Cursor review remain outstanding. |
 | Gemini CLI | Repository root (`gemini-extension.json`) | Package installation and extension listing passed from the draft branch; authenticated OAuth is unverified. Merge to the default branch and gallery indexing remain outstanding. |

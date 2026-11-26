@@ -27,6 +27,14 @@ error handling; they do not establish successful owner consent, token issuance,
 refresh rotation/replay protection, revocation, or an authenticated client tool
 call. Those end-to-end gates remain open.
 
+**Claude Code client check, 26 November 2026:** Claude Code 2.1.223
+successfully discovered the production OAuth configuration, completed dynamic
+client registration, and generated a PKCE S256 authorization request for the
+MCP resource. The request was pinned to `brain:read`; Claude Code adds
+`offline_access` for token refresh. No capture or write scope was requested.
+The client is waiting for owner browser consent, so this is not yet evidence of
+a token grant or authenticated MCP request.
+
 Only public OAuth clients are accepted. Authorization Code + PKCE S256 is
 required. Users explicitly approve the ReasonTrail organization and scopes.
 `brain:read` and `brain:capture` are available; `brain:write` and
@@ -217,7 +225,7 @@ the low-impact call procedure in the Microsoft documentation.
 
 | Client / channel | Package or setup | OAuth compatibility | Live verified | Official listing |
 | --- | --- | --- | --- | --- |
-| Claude Software Directory | No policy-cleared endpoint yet; current shared endpoint includes capture | Production discovery and DCR are live; successful consent/token flow not verified | No | Blocked on Anthropic policy fit and live validation |
+| Claude Software Directory | No policy-cleared endpoint yet; current shared endpoint includes capture | Claude Code 2.1.223 completed DCR and formed a PKCE request for `brain:read offline_access`; consent/token flow and authenticated call remain unverified | No | Blocked on Anthropic policy fit and live validation |
 | ChatGPT / Codex Plugins Directory | Portable Agent Plugin | Production discovery and DCR are live; successful consent/token flow not verified | No | Not submitted; portal and authenticated client tests remain |
 | Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | Package installed/listed; authenticated call not verified | Root manifest in draft PR; `gemini-cli-extension` topic is set; merge and gallery indexing pending |
 | Cursor Marketplace | Root Agent Plugin | Production discovery and DCR are live; successful consent/token flow not verified | No | Root package in draft PR; local test and review pending |
