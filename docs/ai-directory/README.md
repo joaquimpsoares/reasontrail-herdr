@@ -17,11 +17,15 @@ are separate publication paths.
 - OAuth token and refresh: `https://app.reasontrail.ai/oauth/token`
 - OAuth revocation: `https://app.reasontrail.ai/oauth/revoke`
 
-**Live status checked 25 November 2026:** the deployed host returned HTTP 404
-for the OAuth authorization-server metadata, protected-resource metadata,
-registration, and token routes. The changes in this checkout are not deployed,
-so neither Claude nor ChatGPT can complete OAuth against the current hosted
-service yet.
+**Live status checked 26 November 2026:** production serves authorization-server
+and protected-resource metadata (HTTP 200). Dynamic client registration returns
+HTTP 201 to a valid POST; registration and token routes correctly reject GET
+with HTTP 405. An invalid authorization-code exchange returned HTTP 400, and
+an unauthenticated MCP request returned HTTP 401 with the expected metadata
+challenge. These checks establish OAuth discovery, registration, and protocol
+error handling; they do not establish successful owner consent, token issuance,
+refresh rotation/replay protection, revocation, or an authenticated client tool
+call. Those end-to-end gates remain open.
 
 Only public OAuth clients are accepted. Authorization Code + PKCE S256 is
 required. Users explicitly approve the ReasonTrail organization and scopes.
@@ -166,8 +170,12 @@ drop OAuth data as part of an application rollback.
 
 The repository root `gemini-extension.json` configures the ReasonTrail remote
 MCP endpoint over HTTP streaming and relies on Gemini CLI's OAuth discovery,
-dynamic registration, and token lifecycle support. The extension still needs
-a real Gemini CLI connection test against a deployed OAuth release.
+dynamic registration, and token lifecycle support. On 26 November 2026, Gemini
+CLI 0.71.1 installed the package from this PR branch and listed the extension
+and its MCP server. The server remained disconnected: a prompted tool request
+stopped because no Gemini authentication method was configured in the local
+CLI. This validates package installation and discovery only, not OAuth consent
+or a live authenticated tool call.
 
 The [official gallery publishing guide](https://geminicli.com/docs/extensions/releasing/)
 indexes public GitHub repositories tagged `gemini-cli-extension` when the
@@ -209,12 +217,13 @@ the low-impact call procedure in the Microsoft documentation.
 
 | Client / channel | Package or setup | OAuth compatibility | Live verified | Official listing |
 | --- | --- | --- | --- | --- |
-| Claude Software Directory | No policy-cleared endpoint yet; current shared endpoint includes capture | OAuth 2.0, PKCE, discovery implemented locally | No; hosted OAuth routes were 404 on 25 Nov 2026 | Blocked on Anthropic policy fit and live validation |
-| ChatGPT / Codex Plugins Directory | Portable Agent Plugin | OAuth discovery/DCR; portal handshake still needs confirmation | No | Not submitted |
-| Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | No | Root manifest in draft branch; `gemini-cli-extension` topic is set; merge, live test and gallery indexing pending |
-| Cursor Marketplace | Root Agent Plugin | Cursor supports MCP with OAuth | No | Root package in draft branch; merge, local test and review pending |
+| Claude Software Directory | No policy-cleared endpoint yet; current shared endpoint includes capture | Production discovery and DCR are live; successful consent/token flow not verified | No | Blocked on Anthropic policy fit and live validation |
+| ChatGPT / Codex Plugins Directory | Portable Agent Plugin | Production discovery and DCR are live; successful consent/token flow not verified | No | Not submitted; portal and authenticated client tests remain |
+| Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | Package installed/listed; authenticated call not verified | Root manifest in draft PR; `gemini-cli-extension` topic is set; merge and gallery indexing pending |
+| Cursor Marketplace | Root Agent Plugin | Production discovery and DCR are live; successful consent/token flow not verified | No | Root package in draft PR; local test and review pending |
 | VS Code / Copilot | Direct remote MCP setup | OAuth supported in Copilot configuration | No | Marketplace is experimental; no publisher path confirmed |
 
-“OAuth compatibility” above describes documented client capability and the
-implemented server protocol, not a completed live handshake. Refresh this
-table after deployment and per-client tool-call verification.
+“OAuth compatibility” above describes documented client capability plus the
+live discovery/DCR checks. It does not mean a completed consent, token grant,
+refresh, or authenticated tool-call flow. Refresh this table after those
+client-specific checks.

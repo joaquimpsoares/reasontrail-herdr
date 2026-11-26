@@ -83,9 +83,9 @@ all be run against a dedicated test tenant before submission.
 
 Do not submit either listing until its current portal requirements are met:
 
-- Deploy the OAuth migration and application code, then verify registration,
-  consent, code exchange, refresh rotation/replay revocation, resource binding,
-  and token revocation against the live service.
+- Complete owner consent, code exchange, refresh rotation/replay revocation,
+  resource binding and token revocation against production, then verify an
+  authenticated MCP tool call from each target client.
 - Complete Anthropic and OpenAI domain verification and their live tool scans.
 - Create test tenants with representative sample data and execute the required
   review prompts.
