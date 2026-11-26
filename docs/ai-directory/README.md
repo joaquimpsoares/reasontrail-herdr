@@ -33,7 +33,13 @@ client registration, and generated a PKCE S256 authorization request for the
 MCP resource. The request was pinned to `brain:read`; Claude Code adds
 `offline_access` for token refresh. No capture or write scope was requested.
 The client is waiting for owner browser consent, so this is not yet evidence of
-a token grant or authenticated MCP request.
+a token grant or authenticated MCP request. Claude Code also logged an MCP SDK
+SEP-2352 warning that a stored OAuth credential lacked an `issuer` stamp (see
+the [MCP SDK issuer-binding guidance](https://ts.sdk.modelcontextprotocol.io/v2/migration/upgrade-to-v2)).
+The live authorization-server metadata currently publishes its issuer and
+`authorization_response_iss_parameter_supported: true`; investigate the
+credential-stamp warning during the authenticated run before claiming full
+client validation.
 
 Only public OAuth clients are accepted. Authorization Code + PKCE S256 is
 required. Users explicitly approve the ReasonTrail organization and scopes.
