@@ -64,6 +64,9 @@ herdr plugin pane open --plugin ai.reasontrail.project-memory --entrypoint hando
 
 Herdr discovers plugins from **public** GitHub repositories tagged with the `herdr-plugin` topic. This repository is public and already appears in Herdr's marketplace index. Indexing is automatic and may lag default-branch updates; it is not a security review, so users should inspect plugin source before installing.
 
+The live index refreshed on 26 November 2026 at 03:00 UTC and now reports
+ReasonTrail Project Memory 0.1.1 at default-branch commit `a11d5eccbaf0ca247d068dc36f0325f46a8a8e5d`. This verifies the existing Herdr listing update is published in discovery.
+
 The current first slice deliberately contains no automatic lifecycle hooks. Add them only after validating exact Herdr event semantics and the ReasonTrail capture contract. Any future capture must remain explicit and governed; it must not pretend that an agent status event is a conversation transcript.
 
 ## License
