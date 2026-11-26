@@ -53,7 +53,9 @@ for (const ref of [plugin.extensions?.['com.openai']?.onboardingSkill, plugin.ex
 
 required(mcp.mcpServers?.reasontrail?.url === 'https://app.reasontrail.ai/api/mcp', 'Portable package must point to the ReasonTrail remote MCP endpoint');
 required(gemini.name === 'reasontrail-herdr', 'Gemini extension name must match the repository directory');
-required(gemini.mcpServers?.reasontrail?.httpUrl === 'https://app.reasontrail.ai/api/mcp', 'Gemini extension must point to the ReasonTrail remote MCP endpoint');
+required(gemini.mcpServers?.reasontrail?.type === 'http'
+  && gemini.mcpServers?.reasontrail?.url === 'https://app.reasontrail.ai/api/mcp',
+  'Gemini extension must declare the current HTTP transport and point to the ReasonTrail remote MCP endpoint');
 required(openaiMcp.mcpServers?.reasontrail?.extensions?.['com.openai']?.auth?.client?.mode === 'dcr', 'OpenAI package must declare dynamic client registration');
 required(openaiMcp.mcpServers?.reasontrail?.extensions?.['com.openai']?.auth?.baseScopes?.includes('brain:read'), 'OpenAI package must request the read scope');
 
