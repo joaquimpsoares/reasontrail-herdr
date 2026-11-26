@@ -136,6 +136,15 @@ The owner still needs to supply and verify:
   as informational, with no automatic deletion. Do not imply that this field
   deletes or expires data. External clients may retain retrieved context beyond
   ReasonTrail's control.
+- Record-specific deletion limits must also be disclosed. The account-data
+  deletion path removes only eligible private records without project or review
+  dependencies; linked/shared work may be retained or require support review.
+  Source code has cleanup logic for 90-day access telemetry and expired
+  sessions, but no application scheduler call site was found in the inspected
+  checkout. Backup scripts and Compose configuration default to daily backups
+  and 14 copies; production-effective settings and backup expiry are unverified.
+  Do not present these source defaults as verified service-wide retention
+  periods or promise blanket deletion until operations and policy are confirmed.
 - Support contact, screenshots and release notes.
 
 Do not include credentials or reviewer secrets in the plugin ZIP or repository.
@@ -152,8 +161,9 @@ Prepare and execute these against a dedicated non-production reviewer tenant.
    tasks and project records.
 3. Ask what the team decided about one named topic; expect approved decisions
    with provenance and pending proposals clearly distinguished.
-4. Ask to record a new decision; expect a governed proposal, not a canonical
-   decision mutation.
+4. In a client approved for governed capture, ask to record a new decision;
+   expect a governed proposal, not a canonical decision mutation. Do not run
+   this case in Claude unless Anthropic policy fit is resolved.
 5. Refresh an expired access token; expect the old refresh token to be unusable
    and the rotated token to work until revoked or expired.
 
@@ -184,12 +194,11 @@ drop OAuth data as part of an application rollback.
 
 The repository root `gemini-extension.json` configures the ReasonTrail remote
 MCP endpoint over HTTP streaming and relies on Gemini CLI's OAuth discovery,
-dynamic registration, and token lifecycle support. On 26 November 2026, Gemini
-CLI 0.71.1 installed the package from this PR branch and listed the extension
-and its MCP server. The server remained disconnected: a prompted tool request
-stopped because no Gemini authentication method was configured in the local
-CLI. This validates package installation and discovery only, not OAuth consent
-or a live authenticated tool call.
+dynamic registration, and token lifecycle support. A prior Gemini CLI 0.71.1
+profile installed the package from this PR branch and listed its MCP server,
+which remained disconnected because no Gemini authentication method was
+configured. The current profile has no extension installed. Neither observation
+establishes OAuth consent or an authenticated tool call.
 
 The [official gallery publishing guide](https://geminicli.com/docs/extensions/releasing/)
 indexes public GitHub repositories tagged `gemini-cli-extension` when the
@@ -198,9 +207,9 @@ support](https://geminicli.com/docs/tools/mcp-server/) documents metadata
 discovery, dynamic client registration, and token management. The
 existing public [ReasonTrail Herdr repository](https://github.com/joaquimpsoares/reasontrail-herdr)
 is Apache-2.0 licensed and owner-administered. This distribution branch adds
-the Gemini manifest at root; the change must be merged and the
-`gemini-cli-extension` topic added before gallery indexing can find it. The
-existing topic `herdr-plugin` remains intact.
+the Gemini manifest at root. The `gemini-cli-extension` topic is already set
+alongside the existing `herdr-plugin` topic; merge the manifest PR, then verify
+gallery indexing. This does not establish publication.
 
 ## Cursor Marketplace
 
@@ -233,7 +242,7 @@ the low-impact call procedure in the Microsoft documentation.
 | --- | --- | --- | --- | --- |
 | Claude Software Directory | No policy-cleared endpoint yet; current shared endpoint includes capture | Claude Code 2.1.223 completed DCR and formed a PKCE request for `brain:read offline_access`; consent/token flow and authenticated call remain unverified | No | Blocked on Anthropic policy fit and live validation |
 | ChatGPT / Codex Plugins Directory | Portable Agent Plugin | Production discovery and DCR are live; successful consent/token flow not verified | No | Not submitted; portal and authenticated client tests remain |
-| Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | Package installed/listed; authenticated call not verified | Root manifest in draft PR; `gemini-cli-extension` topic is set; merge and gallery indexing pending |
+| Gemini CLI gallery | Root `gemini-extension.json` | Gemini documents OAuth discovery, DCR and refresh | Prior profile installation/listing; current profile uninstalled; authenticated call not verified | Root manifest in draft PR; topic is set; merge and gallery indexing pending |
 | Cursor Marketplace | Root Agent Plugin | Production discovery and DCR are live; successful consent/token flow not verified | No | Root package in draft PR; local test and review pending |
 | VS Code / Copilot | Direct remote MCP setup | OAuth supported in Copilot configuration | No | Marketplace is experimental; no publisher path confirmed |
 
