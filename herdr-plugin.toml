@@ -1,8 +1,8 @@
 id = "ai.reasontrail.project-memory"
 name = "ReasonTrail Project Memory"
-version = "0.1.0"
+version = "0.1.1"
 min_herdr_version = "0.9.0"
-description = "Fetch governed project context and submit an explicit handover to ReasonTrail."
+description = "Fetch bounded ReasonTrail project context and submit explicit handovers for review."
 platforms = ["linux", "macos", "windows"]
 
 [[build]]
