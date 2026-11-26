@@ -1,6 +1,6 @@
 {
   "name": "@reasontrail/herdr-plugin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Herdr TUI plugin for governed ReasonTrail project context and handovers",
   "type": "module",
