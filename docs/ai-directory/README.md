@@ -1,11 +1,22 @@
 # AI directory submission readiness
 
 This document tracks the hosted ReasonTrail MCP connection intended for Claude,
-ChatGPT and other OAuth-capable MCP clients. These checklists do not imply that
-any directory has approved or published ReasonTrail. Client directories have
-different scopes: Claude Software Directory, OpenAI Plugins Directory, Gemini
-CLI extension gallery, Cursor Marketplace, and VS Code's preview marketplace
-are separate publication paths.
+ChatGPT and other OAuth-capable MCP clients. ReasonTrail is already published
+in Herdr's community marketplace. Publication in the Claude Software Directory,
+OpenAI Plugins Directory, Gemini CLI extension gallery, Cursor Marketplace,
+and VS Code's preview marketplace has not been confirmed; each is a separate
+channel with its own requirements.
+
+## Herdr marketplace
+
+The [ReasonTrail Project Memory listing](https://herdr.dev/tui/plugins/) is
+discoverable from the public [`joaquimpsoares/reasontrail-herdr`](https://github.com/joaquimpsoares/reasontrail-herdr)
+repository, which has the `herdr-plugin` topic. PR #2 updated the manifest to
+version 0.1.1 and was merged on 26 November 2026; tag
+[`v0.1.1`](https://github.com/joaquimpsoares/reasontrail-herdr/tree/v0.1.1)
+points to the merged commit. Herdr refreshes its marketplace index
+automatically, so verify the indexed metadata after refresh before claiming the
+new version is visible. Marketplace inclusion is not a security review.
 
 ## Hosted endpoints
 
